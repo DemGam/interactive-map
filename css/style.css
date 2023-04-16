@@ -1,0 +1,364 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:regular,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1.25;
+  font-size: 16px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+svg,
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+/* Tables still need 'cellspacing="0"' in the markup. */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+}
+
+table,
+td,
+th {
+  vertical-align: middle;
+}
+
+/* Remove possible quote marks (") from <q>, <blockquote>. */
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+blockquote,
+q {
+  quotes: "" "";
+}
+
+/* Remove annoying border on linked images. */
+a img {
+  border: none;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: rgb(255, 244, 220);
+}
+
+img {
+  max-width: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.1;
+  padding-top: 1rem;
+}
+@media (max-width: 992px) {
+  .title {
+    font-size: calc(32px + 16 * (100vw - 320px) / 672);
+  }
+}
+
+.subtitle {
+  font-size: 32px;
+  text-align: center;
+}
+@media (max-width: 992px) {
+  .subtitle {
+    font-size: calc(24px + 8 * (100vw - 320px) / 672);
+    margin-bottom: calc(24px - 24 * (100vw - 768px) / 224);
+  }
+}
+@media (max-width: 768px) {
+  .subtitle {
+    margin-bottom: 24px;
+  }
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
+.map__wrapper {
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2%;
+}
+.map__sections {
+  width: 100%;
+}
+.map__section {
+  cursor: pointer;
+  pointer-events: fill;
+  stroke: transparent;
+  transition: stroke 0.25s ease-in-out;
+}
+.map__section:hover {
+  stroke: #868686;
+  stroke-width: 0.2rem;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.map__section_manitoba {
+  fill: #d8df26;
+}
+.map__section_newfoundland-n-labrador {
+  fill: #70cbdb;
+}
+.map__section_yukon {
+  fill: #d31b5a;
+}
+.map__section_nunavut {
+  fill: #92288d;
+}
+.map__section_quebec {
+  fill: #00a89c;
+}
+.map__section_ontario {
+  fill: #3ab449;
+}
+.map__section_prince-edward-island {
+  fill: #0c1cff;
+}
+.map__section_nova-scotia {
+  fill: #3556a6;
+}
+.map__section_british-columbia {
+  fill: #ec1f23;
+}
+.map__section_northwest-territories {
+  fill: #9c1e5f;
+}
+.map__section_saskatchewan {
+  fill: #faaf3a;
+}
+.map__section_new-brunswick {
+  fill: #28a9e1;
+}
+.map__section_alberta {
+  fill: #f05a25;
+}
+.map__base {
+  height: 100%;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  left: 0;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  top: 0;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  line-height: 1;
+  z-index: 10;
+}
+
+.info__wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: all 0.3s ease 0s;
+  pointer-events: none;
+  z-index: 20;
+}
+.info__wrapper.active {
+  pointer-events: all;
+  opacity: 1;
+  transition: all 0.3s ease 0s;
+}
+.info__card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(226, 226, 226);
+  border-radius: 1.8rem;
+  padding: 2rem;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+@media (max-width: 992px) {
+  .info__card {
+    width: 695px;
+  }
+}
+@media (max-width: 768px) {
+  .info__card {
+    width: 90%;
+    padding: 1rem;
+    border-radius: 1.2rem;
+  }
+}
+.info__close {
+  font-weight: 700;
+  align-self: flex-end;
+  font-size: 20px;
+  padding: 0.5rem;
+  border-radius: 0.7rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-bottom: -0.5rem;
+}
+@media (max-width: 768px) {
+  .info__close {
+    font-size: 16px;
+    border-radius: 0.5rem;
+  }
+}
+.info__image-wrapper {
+  height: 50vh;
+  background: url(../img/loading.gif) center/15% no-repeat;
+}
+.info__image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.info__title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 16px;
+}
+@media (max-width: 992px) {
+  .info__title {
+    font-size: calc(24px + 8 * (100vw - 320px) / 672);
+    padding: calc(4px + 12 * (100vw - 320px) / 672);
+  }
+}
+.info__description {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 768px) {
+  .info__description {
+    font-size: 14px;
+    -webkit-line-clamp: 6;
+  }
+}
+@media (max-width: 540px) {
+  .info__description {
+    -webkit-line-clamp: 8;
+  }
+}
+.info__link {
+  color: rgb(235, 62, 62);
+}

@@ -1,0 +1,284 @@
+@import "_null";
+// ==================================
+@import url("https://fonts.googleapis.com/css?family=Montserrat:regular,700&display=swap");
+
+body {
+	font-family: "Montserrat", sans-serif;
+	background-color: rgb(255 244 220);
+}
+
+img {
+	max-width: 100%;
+}
+
+.wrapper {
+	width: 100%;
+	height: 100vh;
+}
+.title {
+	font-size: 48px;
+	font-weight: 700;
+	text-align: center;
+	line-height: 1.1;
+	padding-top: 1rem;
+
+	@media (max-width: 992px) {
+		font-size: calc(32px + 16 * (100vw - 320px) / (992 - 320));
+	}
+}
+
+.subtitle {
+	font-size: 32px;
+	text-align: center;
+
+	@media (max-width: 992px) {
+		font-size: calc(24px + 8 * (100vw - 320px) / (992 - 320));
+		margin-bottom: calc(24px - 24 * (100vw - 768px) / (992 - 768));
+	}
+	@media (max-width: 768px) {
+		margin-bottom: 24px;
+	}
+}
+
+.map {
+	width: 100%;
+	height: 100%;
+
+	// .map__wrapper
+	&__wrapper {
+		height: 100%;
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 2%;
+
+		// justify-content: center;
+
+		// &::before {
+		// 	content: "";
+		// 	height: 100%;
+		// 	width: 100%;
+		// 	display: block;
+		// 	position: absolute;
+		// }
+	}
+
+	// .map__sections
+	&__sections {
+		// height: 100%;
+		width: 100%;
+		// position: absolute;
+	}
+
+	// .map__section
+	&__section {
+		cursor: pointer;
+		pointer-events: fill;
+		stroke: transparent;
+		transition: stroke 0.25s ease-in-out;
+
+		&:hover {
+			stroke: #868686;
+			stroke-width: 0.2rem;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+		}
+
+		// .map__section_manitoba
+		&_manitoba {
+			fill: #d8df26;
+		}
+
+		// .map__section_newfoundland-n-labrador
+		&_newfoundland-n-labrador {
+			fill: #70cbdb;
+		}
+
+		// .map__section_yukon
+		&_yukon {
+			fill: #d31b5a;
+		}
+
+		// .map__section_nunavut
+		&_nunavut {
+			fill: #92288d;
+		}
+
+		// .map__section_quebec
+		&_quebec {
+			fill: #00a89c;
+		}
+
+		// .map__section_ontario
+		&_ontario {
+			fill: #3ab449;
+		}
+
+		// .map__section_prince-edward-island
+		&_prince-edward-island {
+			fill: #0c1cff;
+		}
+
+		// .map__section_nova-scotia
+		&_nova-scotia {
+			fill: #3556a6;
+		}
+
+		// .map__section_british-columbia
+		&_british-columbia {
+			fill: #ec1f23;
+		}
+
+		// .map__section_northwest-territories
+		&_northwest-territories {
+			fill: #9c1e5f;
+		}
+
+		// .map__section_saskatchewan
+		&_saskatchewan {
+			fill: #faaf3a;
+		}
+
+		// .map__section_new-brunswick
+		&_new-brunswick {
+			fill: #28a9e1;
+		}
+
+		// .map__section_alberta
+		&_alberta {
+			fill: #f05a25;
+		}
+	}
+
+	// .map__base
+	&__base {
+		height: 100%;
+	}
+}
+
+.tooltip {
+	display: none;
+	position: absolute;
+	left: 0;
+	width: min-content;
+	top: 0;
+	padding: 0.5rem;
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 0.5rem;
+	box-shadow: 0 0 10px rgba($color: #000, $alpha: 0.3);
+	line-height: 1;
+	z-index: 10;
+}
+
+.info {
+	// .info__wrapper
+	&__wrapper {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		background-color: rgba(0, 0, 0, 0.5);
+		opacity: 0;
+		transition: all 0.3s ease 0s;
+		pointer-events: none;
+		z-index: 20;
+
+		&.active {
+			pointer-events: all;
+			opacity: 1;
+			transition: all 0.3s ease 0s;
+		}
+	}
+
+	// .info__card
+	&__card {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background-color: rgb(226, 226, 226);
+		border-radius: 1.8rem;
+		padding: 2rem;
+		width: 70%;
+		display: flex;
+		flex-direction: column;
+		justify-content: start;
+
+		@media (max-width: 992px) {
+			// width: calc(691px - 195 * (100vw - 768px) / (992 - 768));
+			width: 695px;
+		}
+		@media (max-width: 768px) {
+			width: 90%;
+			padding: 1rem;
+			border-radius: 1.2rem;
+		}
+	}
+
+	//.info__close
+	&__close {
+		font-weight: 700;
+		align-self: flex-end;
+		font-size: 20px;
+		padding: 0.5rem;
+		border-radius: 0.7rem;
+		background-color: rgba(255, 255, 255, 0.5);
+		margin-bottom: -0.5rem;
+
+		@media (max-width: 768px) {
+			font-size: 16px;
+			border-radius: 0.5rem;
+		}
+	}
+
+	// .info__image-wrapper
+	&__image-wrapper {
+		// display: flex;
+		// justify-content: center;
+		height: 50vh;
+		background: url(../img/loading.gif) center / 15% no-repeat;
+	}
+
+	// .info__image
+	&__image {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+	}
+
+	// .info__title
+	&__title {
+		font-size: 2rem;
+		font-weight: 700;
+		line-height: 1;
+		padding: 16px;
+		@media (max-width: 992px) {
+			font-size: calc(24px + 8 * (100vw - 320px) / (992 - 320));
+			padding: calc(4px + 12 * (100vw - 320px) / (992 - 320));
+		}
+	}
+
+	// .info__description
+	&__description {
+		display: -webkit-box !important;
+		-webkit-line-clamp: 5;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+		@media (max-width: 768px) {
+			font-size: 14px;
+			-webkit-line-clamp: 6;
+		}
+		@media (max-width: 540px) {
+			-webkit-line-clamp: 8;
+		}
+	}
+
+	// .info__link
+	&__link {
+		color: rgb(235, 62, 62);
+	}
+}
